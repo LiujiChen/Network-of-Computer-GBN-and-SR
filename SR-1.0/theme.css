@@ -1,0 +1,40 @@
+#main_canvas {
+    position: relative;
+}
+.container {
+    position: relative;
+}
+.overlay {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.button{
+    position: absolute;
+    background-color: 	#F0E68C;
+    color: black;
+    border: 2px solid 	#DAA520;
+    border-radius: 15px;
+    width: 100px;
+    height: 50px;
+    top: 450px;
+    z-index: 100;
+}
+
+.show_box {
+    position: absolute;
+    z-index: 100;
+    margin-left: 100px;
+    width: 1000px;
+    height: 100px;
+    top:550px;
+    border: 2px solid 	#FF6347;
+    border-radius: 15px;
+}
+
+.show_box .info_box {
+    position: relative;
+    width: 180px;
+    margin-left: 20px;
+}

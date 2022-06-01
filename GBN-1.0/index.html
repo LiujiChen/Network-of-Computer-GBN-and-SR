@@ -1,0 +1,54 @@
+<head>
+  <meta charset="utf8">
+</head>
+
+<link rel="stylesheet" type="text/css" href="theme.css" />
+<!-- vertex shader -->
+<script id="vertex-shader-2d" type="notjs">
+    attribute vec4 a_position;
+    attribute vec4 a_color;
+  
+    uniform vec2 u_resolution;
+
+    varying vec4 v_color;
+  
+    void main() {
+       // convert the position from pixels to 0.0 to 1.0
+       vec2 zeroToOne = a_position.xy / u_resolution;
+  
+       // convert from 0->1 to 0->2
+       vec2 zeroToTwo = zeroToOne * 2.0;
+  
+       // convert from 0->2 to -1->+1 (clipspace)
+       vec2 clipSpace = zeroToTwo - 1.0;
+  
+       gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
+
+       // set color
+       v_color = a_color;
+    }
+  </script>
+<!-- fragment shader -->
+<script id="fragment-shader-2d" type="notjs">
+    precision mediump float;
+    varying vec4 v_color;
+  
+    void main() {
+      gl_FragColor = v_color;
+    }
+  </script>
+
+<div class="container" id="container">
+  <canvas id="main_canvas"></canvas>
+  <button id="start" onclick="keep_on()" class="button" style="left: 120px">开始</button>
+  <button id="send" class="button" style="left: 335px">发送</button>
+  <button id="pause" onclick="pause()" class="button" style="left: 550px">暂停</button>
+  <button id="remove" onclick="remove()" class="button" style="left: 765px">移除</button>
+  <button id="reset" onclick="reset()" class="button" style="left: 980px">重置</button>
+</div>
+<div class="show_box"></div>
+
+<script src="https://webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
+<script src="init.js"></script>
+<script src="transport.js"></script>
+<script src="main.js"></script>
